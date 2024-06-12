@@ -1,11 +1,13 @@
 package repository
 
-import (	        
-    "context"
+import (
+	"context"
+	"fmt"
 	"log"
-    "msproject/product-service/models"
-    "go.mongodb.org/mongo-driver/bson"
-    "go.mongodb.org/mongo-driver/mongo"
+	"product-service/models"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -57,6 +59,7 @@ func UpdateProduct(product models.Product) error {
 
 func DeleteProduct(name string) error {
     collection := client.Database("product").Collection("product_collection")
+	fmt.Print("name ",name)
     _, err := collection.DeleteOne(context.TODO(), bson.D{{"itemcode", name}})
     return err
 }
