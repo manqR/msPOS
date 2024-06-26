@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"log"
 	"time"
+	"database/sql"
+	"fmt"
 
 	"github.com/rabbitmq/amqp091-go"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,10 +14,12 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 
 	"consumer-service/models"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var rabbitMQChannel *amqp091.Channel
 var mongoClient *mongo.Client
+var db *sql.DB
 
 func failOnError(err error, msg string) {
 	if err != nil {
@@ -91,7 +95,7 @@ func processMessages(msgs <-chan amqp091.Delivery, queueName string) {
 
 		switch queueName {
 		case "product_insert_queue":
-			err = insertProduct(product)
+			err = insertProductMysql(product)
 		case "product_update_queue":
 			err = updateProduct(product)
 		default:
@@ -103,6 +107,21 @@ func processMessages(msgs <-chan amqp091.Delivery, queueName string) {
 			log.Printf("Failed to process message from %s: %v", queueName, err)
 		}
 	}
+}
+
+// InsertProduct inserts a product into the MySQL database
+func insertProductMysql(product models.Product) error {
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+
+    query := "INSERT INTO products (productId, productName) VALUES (?, ?)"
+    _, err := db.ExecContext(ctx, query, product.ItemCode, product.Name)
+    if err != nil {
+        return fmt.Errorf("could not insert product: %v", err)
+    }
+
+    log.Printf("Inserted product into MySQL: %+v", product)
+    return nil
 }
 
 func insertProduct(product models.Product) error {
@@ -134,6 +153,21 @@ func updateProduct(product models.Product) error {
 	return nil
 }
 
+// Initialize the database connection
+func initDB() {
+    dsn := "user:password@tcp(127.0.0.1:3306)/order-service"
+    var err error
+    db, err = sql.Open("mysql", dsn)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if err := db.Ping(); err != nil {
+        log.Fatal(err)
+    }
+}
+
+
 func main() {
 	var err error
 	mongoClient, err = mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
@@ -145,4 +179,5 @@ func main() {
 	defer mongoClient.Disconnect(context.Background())
 
 	ConsumeRabbitMQMessages()
+	initDB()
 }

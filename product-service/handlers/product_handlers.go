@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"product-service/models"
 	"product-service/service"
-	"product-service/utils"
+	"product-service/utils"	
 
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -21,6 +21,11 @@ func InsertProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
+
+	if err := service.InsertProduct(product); err != nil {
+        utils.RespondWithError(w, http.StatusInternalServerError, err.Error())
+        return
+    }
 
 	if err := service.PublishInsertProduct(product); err != nil {
 		utils.RespondWithError(w, http.StatusInternalServerError, err.Error())

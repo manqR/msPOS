@@ -56,6 +56,10 @@ func PublishUpdateProduct(product models.Product) error {
 	return publishToRabbitMQ("product.update", productJSON)
 }
 
+func InsertProduct(product models.Product) error {
+	return repository.InsertProduct(product)
+}
+
 func DeleteProduct(name string) error {
 	// Directly delete product from MongoDB
 	return repository.DeleteProduct(name)
