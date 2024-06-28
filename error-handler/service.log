@@ -1,0 +1,40 @@
+2024/06/27 16:57:09 MongoDB configuration environment variables not set
+2024/06/27 16:59:41 MongoDB configuration environment variables not set
+2024/06/27 17:01:47 Connected to MongoDB
+2024/06/27 17:01:47 Error Handler Service running...
+2024/06/27 17:15:40 Connected to MongoDB
+2024/06/27 17:15:40 Error Handler Service running...
+2024/06/28 15:21:02 Connected to MongoDB
+2024/06/28 15:21:02 Error Handler Service running...
+2024/06/28 15:38:34 Received a message from product_dlq: {"itemcode":"ABCDFG","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 15:38:34 Failed to extract product_id from message: {"itemcode":"ABCDFG","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 15:40:43 Connected to MongoDB
+2024/06/28 15:40:43 Error Handler Service running...
+2024/06/28 15:40:47 Received a message from product_dlq: {"itemcode":"ABCDFGH","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 15:40:47 Deleted product with product_id ABCDFGH from MongoDB
+2024/06/28 15:41:46 Connected to MongoDB
+2024/06/28 15:41:46 Error Handler Service running...
+2024/06/28 15:41:46 Received a message from product_dlq: {"itemcode":"ABCDFGH","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 15:41:46 Deleted product with product_id ABCDFGH from MongoDB
+2024/06/28 15:43:50 Connected to MongoDB
+2024/06/28 15:43:50 Error Handler Service running...
+2024/06/28 16:02:16 Received a message from product_dlq: {"itemcode":"ABCDFGH","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 16:02:16 Deleted product with product_id ABCDFGH from MongoDB
+2024/06/28 16:10:00 Received a message from product_dlq: {"itemcode":"K-1","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 16:10:00 Deleted product with product_id K-1 from MongoDB
+2024/06/28 16:11:46 Received a message from product_dlq: {"itemcode":"K-2","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 16:11:46 Deleted product with product_id K-2 from MongoDB
+2024/06/28 16:42:56 Received a message from product_dlq: {"itemcode":"K-3","name":"Kopi ABC","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 16:42:56 Deleted product with product_id K-3 from MongoDB
+2024/06/28 16:59:13 Connected to MongoDB
+2024/06/28 16:59:13 Error Handler Service running...
+2024/06/28 17:06:19 Received a message from product_dlq: {"itemcode":"K-8","name":"Kopi ABCD","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 17:06:20 Deleted product with itemcode K-8 from MongoDB
+2024/06/28 17:06:56 Received a message from product_dlq: {"itemcode":"K-8","name":"Kopi ABCD","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 17:06:56 Deleted product with itemcode K-8 from MongoDB
+2024/06/28 17:12:54 Received a message from product_dlq: {"itemcode":"K-7","name":"Kopi ABC","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 17:12:54 Deleted product with itemcode K-7 from MongoDB
+2024/06/28 17:13:47 Connected to MongoDB
+2024/06/28 17:13:47 Error Handler Service running...
+2024/06/28 17:13:47 Received a message from product_dlq: {"itemcode":"K-7","name":"Kopi ABC","price":120,"category":"Kopi","jenis":"Arabika"}
+2024/06/28 17:13:47 Deleted product with itemcode K-7 from MongoDB

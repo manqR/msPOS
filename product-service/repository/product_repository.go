@@ -3,7 +3,6 @@ package repository
 import (
 	"context"
 	"fmt"
-	"log"
 	"product-service/models"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -30,8 +29,6 @@ func InitMongoClient() error {
     if err != nil {
         return err
     }
-
-    log.Println("Connected to MongoDB!")
     return nil
 }
 
